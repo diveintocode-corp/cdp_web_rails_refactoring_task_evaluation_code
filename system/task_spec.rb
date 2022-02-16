@@ -177,6 +177,8 @@ RSpec.describe do
       expect(task_list[4]).to have_content 'タスクのタイトル12'
       expect(task_list[5]).to have_content 'タスクのタイトル1'
     end
+  end
+  describe '11. 検索機能で絞り込んだタスクをソートできること' do
     it '開始期間とステータスによる検索後のソートが正常に機能する' do
       visit tasks_path
       fill_in "q_deadline_gteq", with: Date.parse("2021-01-01")
