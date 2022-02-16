@@ -11,7 +11,7 @@ class MyFormatter
 
   def stop(notification)
     if @pass_or_fail
-      @output << "✅ The result of the automated evaluation is a pass. If you have completed all the refactoring presented in the requirements for the assignment, please submit the assignment from the Artwork Submission screen."
+      @output << "✅ The result of the automated assessment is a pass. If you have completed all the refactorings presented in the assignment requirements, please submit your assignment from the DIVER assignment submission screen."
     else
       @output << "❌ The result of the automated evaluation is failing. Please fix your code to pass all tests locally."
     end
