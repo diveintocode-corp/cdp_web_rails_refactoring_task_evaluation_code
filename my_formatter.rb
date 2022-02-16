@@ -13,8 +13,14 @@ class MyFormatter
   end
 
   def example_group_started(notification)
-    if notification.group.to_s.count(':') == 6
+    if notification.group.to_s.count(':') == 4
+      @output << "# #{notification.group.description}\n"
+    elsif notification.group.to_s.count(':') == 6
+      @output << "## #{notification.group.description}\n"
+    elsif notification.group.to_s.count(':') == 8
       @output << "### #{notification.group.description}\n"
+    elsif notification.group.to_s.count(':') == 10
+      @output << "###### #{notification.group.description}\n"
     end
   end
 
