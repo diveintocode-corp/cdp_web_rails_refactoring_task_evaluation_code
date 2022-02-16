@@ -1,30 +1,25 @@
 class MyFormatter
-  RSpec::Core::Formatters.register self, :example_passed, :example_failed, :example_group_started, :start
+  RSpec::Core::Formatters.register self, :example_failed, :start, :stop
   def initialize(output)
     @output = output
+    @pass_or_fail = true
   end
 
   def start(notification)
     @output << "---\ntitle: 課題評価のフィードバック\n---\n"
   end
 
-  def example_passed(notification)
-    @output << "- ✅ #{notification.example.description}\n"
-  end
-
-  def example_group_started(notification)
-    if notification.group.to_s.count(':') == 4
-      @output << "# #{notification.group.description}\n"
-    elsif notification.group.to_s.count(':') == 6
-      @output << "## #{notification.group.description}\n"
-    elsif notification.group.to_s.count(':') == 8
-      @output << "### #{notification.group.description}\n"
-    elsif notification.group.to_s.count(':') == 10
-      @output << "###### #{notification.group.description}\n"
+  def stop(notification)
+    if @pass_or_fail
+      @output << "✅ 自動テストの結果は合格です。課題の要件で提示したすべてのリファクタリングが完了している場合は、画題提出画面より課題を提出してください。"
+    else
+      @output << "❌ 自動テストの結果は不合格です。ローカルですべてのテストに合格するようコードを修正してください。"
     end
   end
 
   def example_failed(notification)
-    @output << "- [ ] ❌ #{notification.example.description}\n"
+    if @pass_or_fail == true
+      @pass_or_fail = false
+    end
   end
 end
