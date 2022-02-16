@@ -6,14 +6,14 @@ class MyFormatter
   end
 
   def start(notification)
-    @output << "---\ntitle: 課題評価のフィードバック\n---\n"
+    @output << "---\ntitle: Feedback on the assignment\n---\n"
   end
 
   def stop(notification)
     if @pass_or_fail
-      @output << "✅ 自動テストの結果は合格です。課題の要件で提示したすべてのリファクタリングが完了している場合は、画題提出画面より課題を提出してください。"
+      @output << "✅ The result of the automated evaluation is a pass. If you have completed all the refactoring presented in the requirements for the assignment, please submit the assignment from the Artwork Submission screen."
     else
-      @output << "❌ 自動テストの結果は不合格です。ローカルですべてのテストに合格するようコードを修正してください。"
+      @output << "❌ The result of the automated evaluation is failing. Please fix your code to pass all tests locally."
     end
   end
 
