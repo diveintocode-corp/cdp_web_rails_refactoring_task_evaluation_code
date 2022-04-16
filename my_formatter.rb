@@ -10,7 +10,9 @@ class MyFormatter
   end
 
   def stop(notification)
-    if @pass_or_fail
+    if notification.examples.count == 0
+      @output << "## 評価が実行できませんでした。コード内に構文エラーがないか確認してください。\n### よくある構文エラー\n- コードのタイプミス\n- `end`が抜けている"
+    elsif @pass_or_fail
       @output << "✅ 自動評価の結果は合格です。課題の要件で提示したすべてのリファクタリングが完了している場合は、DIVERの課題提出画面より課題を提出してください。"
     else
       @output << "❌ 自動評価の結果は不合格です。ローカルですべてのテストに合格するようコードを修正してください。"
